@@ -7,6 +7,15 @@ plugins {
 android {
     compileSdk 31
 
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                }
+            }
+        }
+    }
     defaultConfig {
         multiDexEnabled true
         minSdk 21
