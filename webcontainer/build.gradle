@@ -56,5 +56,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.android.support:multidex:2.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.20"
     implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
 }
