@@ -1,9 +1,12 @@
-<h1 align="center" style="border-bottom: none;">WebContainer</h1>
+<h1 align="center" style="border-bottom: none;">
+    WebContainer 
+    <p align="center">
+      <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
+      <a href="https://github.com/ichsanachmad/"><img src="https://img.shields.io/badge/GitHub--white?style=social&logo=github" alt="codecov"></a>
+    </p>
+</h1>
 
-<p align="center">
-  <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
-  <a href="https://github.com/ichsanachmad/"><img src="https://img.shields.io/badge/GitHub--white?style=social&logo=github" alt="codecov"></a>
-</p>
+
 
 ---
 
