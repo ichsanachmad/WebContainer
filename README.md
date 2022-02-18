@@ -1,5 +1,5 @@
 <div align="center">
-  <p style="font-size:32px"><b>This text is bold</b></p>
+  <p style="font-size:10vw"><b>WebContainer</b></p>
 </div>
 
 <p align="center">
