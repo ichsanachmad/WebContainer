@@ -1,6 +1,6 @@
-<p align="center">
-  <h1>WebContainer</h1>
-</p>
+<div align="center">
+  <p style="font-size:32px"><b>This text is bold</b></p>
+</div>
 
 <p align="center">
   <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
