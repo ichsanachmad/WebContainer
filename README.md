@@ -7,7 +7,9 @@
     </p>
 </h1>
 
+
 ## Description
+
 Web Container is a simple web container library for Android to help fellow developer to open WebView easily and we made it with a simple syntax. This library is written in Kotlin and published in JitPack.io
 
 ## How To Install
@@ -29,4 +31,32 @@ Step 2. Add the dependency
 dependencies {
   implementation 'com.github.ichsanachmad:WebContainer:v1.1.2'
 }
+```
+
+## How to Use
+
+- Simple Usage WebContainer
+
+```kotlin
+WebContainer.launch(context: Activity, Url: String)
+```
+
+- WebContainer with Callback Listener
+
+```kotlin
+WebContainer.launch(context: Activity, Url: String, object:WebContainerListener {
+    override fun callback(json: String) {
+        // ToDo
+    }
+})
+```
+
+```html
+<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
+
+<script type="text/javascript">
+    function showAndroidToast(message) {
+        AndroidAppCallback.callback(message);
+    }
+</script>
 ```
