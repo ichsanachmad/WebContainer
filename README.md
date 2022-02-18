@@ -1,6 +1,4 @@
-<div align="center">
-   <font size="6"><b>WebContainer</b></font>
-</div>
+<h1 align="center">Material Bread</h1>
 
 <p align="center">
   <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
