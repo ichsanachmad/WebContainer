@@ -1,5 +1,5 @@
 <div align="center">
-  <p style="font-size:10vw"><b>WebContainer</b></p>
+   <font size="6"><b>WebContainer</b></font>
 </div>
 
 <p align="center">
