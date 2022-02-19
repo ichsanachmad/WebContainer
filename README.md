@@ -35,14 +35,14 @@ dependencies {
 
 ## How to Use
 
-- Simple Usage WebContainer
+Simple Usage WebContainer
 
 Kotlin:
 ```kotlin
 WebContainer.launch(context: Activity, Url: String)
 ```
 
-- WebContainer with Callback Listener
+WebContainer with Callback Listener
 
 Kotlin:
 ```kotlin
@@ -62,4 +62,18 @@ HTML/JS:
         AndroidAppCallback.callback(message);
     }
 </script>
+```
+
+React JS :
+```javascript
+class ClassA extends React.PureComponent {
+
+    ...
+
+    private handleRedirect = () => {
+        if (window.Android)
+            window.AndroidAppCallback.callback("Test");
+    };
+}
+
 ```
