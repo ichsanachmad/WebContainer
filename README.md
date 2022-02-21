@@ -71,7 +71,7 @@ class ClassA extends React.PureComponent {
     ...
 
     private handleRedirect = () => {
-        if (window.Android)
+        if (window.AndroidAppCallback)
             window.AndroidAppCallback.callback("Test");
     };
 }
