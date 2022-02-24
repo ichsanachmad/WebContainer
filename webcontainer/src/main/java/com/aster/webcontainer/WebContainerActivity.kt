@@ -39,7 +39,6 @@ internal class WebContainerActivity : AppCompatActivity() {
                 request: WebResourceRequest?
             ): Boolean {
                 view?.loadUrl(request?.url.toString())
-
                 return false
             }
         }
@@ -48,8 +47,30 @@ internal class WebContainerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupActionBar()
         setupListener()
         setupWebContainer()
+    }
+
+    private fun setupActionBar() {
+        binding.toolbar.apply {
+            setSupportActionBar(this)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        binding.webContainer.apply {
+            if (canGoBack()) goBack()
+            else finish()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -77,7 +98,7 @@ internal class WebContainerActivity : AppCompatActivity() {
     private fun setProgressLoadWebView(progress: Int) {
         binding.apply {
             progressBar.progress = progress
-            supportActionBar?.title = when {
+            toolbar.title = when {
                 progress < MAX_PROGRESS -> getString(R.string.loading)
                 else -> {
                     progressBar.visibility = View.GONE
