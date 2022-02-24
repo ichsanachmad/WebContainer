@@ -18,7 +18,7 @@ import com.aster.webcontainer.listener.WebContainerListener
 /**
  * @author ichsanachmad
  */
-class WebContainerActivity : AppCompatActivity() {
+internal class WebContainerActivity : AppCompatActivity() {
     private val binding by lazy { ActivityWebContainerBinding.inflate(layoutInflater) }
 
     private val url by lazy { intent.getStringExtra(EXTRA_WC_URL) ?: "" }
