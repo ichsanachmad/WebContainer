@@ -1,6 +1,7 @@
 package com.aster.webcontainer
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -95,23 +96,36 @@ internal class WebContainerActivity : AppCompatActivity() {
 
         private var listener: WebContainerListener? = null
 
-        fun openWebContainer(context: Context, url: String) {
-            Intent(context, WebContainerActivity::class.java).apply {
-                putExtra(EXTRA_WC_URL, url)
-                context.startActivity(this)
-            }
+        private var applicationContext: Context? = null
+
+        @JvmStatic
+        fun initialize(application: Application) {
+            applicationContext = application.applicationContext
         }
 
+        @JvmStatic
+        fun openWebContainer(url: String) {
+            startActivity(url)
+        }
+
+        @JvmStatic
         fun openWebContainerWithListener(
-            context: Context,
             url: String,
             listener: WebContainerListener
         ) {
-            Intent(context, WebContainerActivity::class.java).apply {
-                putExtra(EXTRA_WC_URL, url)
-                context.startActivity(this)
-            }
+            startActivity(url)
             this.listener = listener
+        }
+
+        private fun startActivity(url: String) {
+            applicationContext?.let {
+                Intent(it, WebContainerActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    putExtra(EXTRA_WC_URL, url)
+                    it.startActivity(this)
+                }
+            }
+                ?: throw IllegalStateException("WebContainer not initialized yet, please init in Application with WebContainer.init(application: Application)")
         }
     }
 }

@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aster.webcontainer">
     <uses-permission android:name="android.permission.INTERNET" />
-    <application>
+    <application
+        android:theme="@style/Theme.AppCompat.Light">
         <meta-data
             android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
@@ -10,5 +11,4 @@
             android:name=".WebContainerActivity"
             android:exported="false" />
     </application>
-
 </manifest>

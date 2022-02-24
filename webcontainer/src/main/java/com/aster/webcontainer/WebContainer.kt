@@ -1,5 +1,6 @@
 package com.aster.webcontainer
 
+import android.app.Application
 import android.content.Context
 import com.aster.webcontainer.listener.WebContainerListener
 
@@ -8,12 +9,16 @@ import com.aster.webcontainer.listener.WebContainerListener
  */
 class WebContainer {
     companion object {
-        fun launch(context: Context, url: String) {
-            WebContainerActivity.openWebContainer(context, url)
+        fun init(application: Application) {
+            WebContainerActivity.initialize(application)
         }
 
-        fun launch(context: Context, url: String, listener: WebContainerListener) {
-            WebContainerActivity.openWebContainerWithListener(context, url, listener)
+        fun launch(url: String) {
+            WebContainerActivity.openWebContainer(url)
+        }
+
+        fun launch(url: String, listener: WebContainerListener) {
+            WebContainerActivity.openWebContainerWithListener(url, listener)
         }
     }
 }
