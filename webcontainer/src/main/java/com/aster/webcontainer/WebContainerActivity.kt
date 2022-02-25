@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.view.isVisible
 import com.aster.webcontainer.databinding.ActivityWebContainerBinding
 import com.aster.webcontainer.listener.WebContainerBridge
 import com.aster.webcontainer.listener.WebContainerListener
@@ -44,6 +45,8 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
     }
 
+    private var isLoaded: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -68,8 +71,10 @@ internal class WebContainerActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         binding.webContainer.apply {
-            if (canGoBack()) goBack()
-            else finish()
+            when {
+                isLoaded && canGoBack() -> goBack()
+                else -> finish()
+            }
         }
     }
 
@@ -99,12 +104,18 @@ internal class WebContainerActivity : AppCompatActivity() {
         binding.apply {
             progressBar.progress = progress
             toolbar.title = when {
-                progress < MAX_PROGRESS -> getString(R.string.loading)
+                progress < MAX_PROGRESS -> {
+                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
+                    isLoaded = false
+                    getString(R.string.loading)
+                }
                 else -> {
-                    progressBar.visibility = View.GONE
+                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+                    isLoaded = true
                     webContainer.title
                 }
             }
+            progressBar.isVisible = !isLoaded
         }
     }
 
