@@ -7,18 +7,20 @@ import com.aster.webcontainer.listener.WebContainerListener
 /**
  * @author ichsanachmad
  */
-class WebContainer {
-    companion object {
-        fun init(application: Application) {
-            WebContainerActivity.initialize(application)
-        }
+object WebContainer {
 
-        fun launch(url: String) {
-            WebContainerActivity.openWebContainer(url)
-        }
+    @JvmStatic
+    fun init(application: Application) {
+        WebContainerActivity.initialize(application)
+    }
 
-        fun launch(url: String, listener: WebContainerListener) {
-            WebContainerActivity.openWebContainerWithListener(url, listener)
-        }
+    @JvmStatic
+    fun launch(url: String) {
+        WebContainerActivity.openWebContainer(url)
+    }
+
+    @JvmStatic
+    fun launch(url: String, listener: WebContainerListener) {
+        WebContainerActivity.openWebContainerWithListener(url, listener)
     }
 }
