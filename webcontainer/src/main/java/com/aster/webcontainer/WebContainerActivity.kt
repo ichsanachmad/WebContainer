@@ -80,7 +80,6 @@ internal class WebContainerActivity : AppCompatActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebContainer() {
-        Log.e(TAG, "UserAgent: ${System.getProperty(USER_AGENT_PROPERTY_KEY)}")
         binding.webContainer.apply {
             webViewClient = webViewClientProp
             webChromeClient = chromeClientProp
