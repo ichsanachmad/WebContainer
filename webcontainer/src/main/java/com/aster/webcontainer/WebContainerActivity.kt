@@ -88,6 +88,7 @@ internal class WebContainerActivity : AppCompatActivity() {
                 useWideViewPort = true
                 loadWithOverviewMode = true
                 javaScriptEnabled = true
+                domStorageEnabled = true
                 userAgentString = System.getProperty(USER_AGENT_PROPERTY_KEY)
             }
             loadUrl(this@WebContainerActivity.url)
