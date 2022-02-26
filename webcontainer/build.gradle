@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.android.support:multidex:2.0.1'
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.20"
     implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     androidTestImplementation('com.adevinta.android:barista:4.2.0') {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project

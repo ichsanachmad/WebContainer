@@ -13,6 +13,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.core.view.isVisible
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aster.webcontainer.databinding.ActivityWebContainerBinding
 import com.aster.webcontainer.listener.WebContainerBridge
 import com.aster.webcontainer.listener.WebContainerListener
@@ -24,6 +25,13 @@ internal class WebContainerActivity : AppCompatActivity() {
     private val binding by lazy { ActivityWebContainerBinding.inflate(layoutInflater) }
 
     private val url by lazy { intent.getStringExtra(EXTRA_WC_URL) ?: "" }
+
+    private val isEnableSwipeRefresh by lazy {
+        intent.getBooleanExtra(
+            EXTRA_IS_ENABLE_SWIPE_REFRESH,
+            false
+        )
+    }
 
     private val chromeClientProp by lazy {
         object : WebChromeClient() {
@@ -45,13 +53,22 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
     }
 
+    private val swipeRefreshListener by lazy {
+        SwipeRefreshLayout.OnRefreshListener {
+            binding.webContainer.reload()
+        }
+    }
+
     private var isLoaded: Boolean = false
+
+    private var isOpenedFirstTime: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupActionBar()
-        setupListener()
+        setupWebContainerListener()
+        setupSwipeRefreshLayout()
         setupWebContainer()
     }
 
@@ -78,6 +95,16 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupSwipeRefreshLayout() {
+        binding.swipeRefreshLayout.apply {
+            if (isEnableSwipeRefresh) {
+                setOnRefreshListener(swipeRefreshListener)
+            } else {
+                isEnabled = false
+            }
+        }
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebContainer() {
         binding.webContainer.apply {
@@ -94,7 +121,7 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupListener() {
+    private fun setupWebContainerListener() {
         listener?.let {
             binding.webContainer.addJavascriptInterface(WebContainerBridge(it), CALLBACK_KEY)
         }
@@ -103,19 +130,35 @@ internal class WebContainerActivity : AppCompatActivity() {
     private fun setProgressLoadWebView(progress: Int) {
         binding.apply {
             progressBar.progress = progress
-            toolbar.title = when {
-                progress < MAX_PROGRESS -> {
-                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
-                    isLoaded = false
-                    getString(R.string.loading)
-                }
-                else -> {
-                    supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
-                    isLoaded = true
-                    webContainer.title
-                }
-            }
+            setOnProgressChange(progress, onProgress = {
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
+                isLoaded = false
+                toolbar.title = getString(R.string.loading)
+                setSwipeRefreshState(isComplete = false)
+            }, onComplete = {
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+                isLoaded = true
+                toolbar.title = webContainer.title
+                setSwipeRefreshState(isComplete = true)
+            })
             progressBar.isVisible = !isLoaded
+        }
+    }
+
+    private fun setSwipeRefreshState(isComplete: Boolean) {
+        binding.swipeRefreshLayout.apply {
+            isRefreshing = when {
+                !isOpenedFirstTime && !isComplete -> true
+                !isOpenedFirstTime && isComplete -> false
+                else -> false
+            }
+        }
+    }
+
+    private fun setOnProgressChange(progress: Int, onProgress: () -> Unit, onComplete: () -> Unit) {
+        when {
+            progress < MAX_PROGRESS -> onProgress()
+            else -> onComplete()
         }
     }
 
@@ -123,6 +166,7 @@ internal class WebContainerActivity : AppCompatActivity() {
         private const val TAG = "WebContainer"
         private const val USER_AGENT_PROPERTY_KEY = "http.agent"
         private const val EXTRA_WC_URL = "web_container_url"
+        private const val EXTRA_IS_ENABLE_SWIPE_REFRESH = "web_container_is_enable_swipe_refresh"
         private const val CALLBACK_KEY = "AndroidAppCallback"
         private const val MAX_PROGRESS = 100
 
@@ -137,7 +181,15 @@ internal class WebContainerActivity : AppCompatActivity() {
 
         @JvmStatic
         fun openWebContainer(url: String) {
-            startActivity(url)
+            startActivity(url, enableSwipeRefresh = false)
+        }
+
+        @JvmStatic
+        fun openWebContainer(
+            url: String,
+            enableSwipeRefresh: Boolean
+        ) {
+            startActivity(url, enableSwipeRefresh)
         }
 
         @JvmStatic
@@ -145,15 +197,26 @@ internal class WebContainerActivity : AppCompatActivity() {
             url: String,
             listener: WebContainerListener
         ) {
-            startActivity(url)
+            startActivity(url, enableSwipeRefresh = false)
             this.listener = listener
         }
 
-        private fun startActivity(url: String) {
+        @JvmStatic
+        fun openWebContainerWithListener(
+            url: String,
+            listener: WebContainerListener,
+            enableSwipeRefresh: Boolean
+        ) {
+            startActivity(url, enableSwipeRefresh)
+            this.listener = listener
+        }
+
+        private fun startActivity(url: String, enableSwipeRefresh: Boolean) {
             applicationContext?.let {
                 Intent(it, WebContainerActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     putExtra(EXTRA_WC_URL, url)
+                    putExtra(EXTRA_IS_ENABLE_SWIPE_REFRESH, enableSwipeRefresh)
                     it.startActivity(this)
                 }
             }

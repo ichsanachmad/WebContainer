@@ -20,7 +20,17 @@ object WebContainer {
     }
 
     @JvmStatic
+    fun launch(url: String, enableSwipeRefresh: Boolean) {
+        WebContainerActivity.openWebContainer(url, enableSwipeRefresh)
+    }
+
+    @JvmStatic
     fun launch(url: String, listener: WebContainerListener) {
         WebContainerActivity.openWebContainerWithListener(url, listener)
+    }
+
+    @JvmStatic
+    fun launch(url: String, listener: WebContainerListener, enableSwipeRefresh: Boolean) {
+        WebContainerActivity.openWebContainerWithListener(url, listener, enableSwipeRefresh)
     }
 }
