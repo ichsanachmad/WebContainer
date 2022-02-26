@@ -147,10 +147,12 @@ internal class WebContainerActivity : AppCompatActivity() {
 
     private fun setSwipeRefreshState(isComplete: Boolean) {
         binding.swipeRefreshLayout.apply {
-            isRefreshing = when {
-                !isOpenedFirstTime && !isComplete -> true
-                !isOpenedFirstTime && isComplete -> false
-                else -> false
+            if (isEnableSwipeRefresh) {
+                isRefreshing = when {
+                    !isOpenedFirstTime && !isComplete -> true
+                    !isOpenedFirstTime && isComplete -> false
+                    else -> false
+                }
             }
         }
     }
