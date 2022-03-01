@@ -53,6 +53,8 @@ _AndroidManifest.xml_:
 </manifest>
 ```
 
+---
+
 **Simple Usage WebContainer**
 
 _without Swipe Refresh_
