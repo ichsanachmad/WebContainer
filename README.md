@@ -34,23 +34,44 @@ dependencies {
 ```
 
 ## How to Use
+Init WebContainer on Application 
 
-Simple Usage WebContainer
 
+
+**Simple Usage WebContainer**
+
+_without Swipe Refresh_
 Kotlin:
 ```kotlin
-WebContainer.launch(context: Activity, Url: String)
+WebContainer.launch(url: String)
+```
+
+_with Swipe Refresh_
+Kotlin:
+```kotlin
+WebContainer.launch(url: String, enableSwipeRefresh: Boolean)
 ```
 
 WebContainer with Callback Listener
 
+_without Swipe Refresh_
 Kotlin:
 ```kotlin
-WebContainer.launch(context: Activity, Url: String, object:WebContainerListener {
+WebContainer.launch(Url: String, object:WebContainerListener {
     override fun callback(json: String) {
         // ToDo
     }
 })
+```
+
+_with Swipe Refresh_
+Kotlin:
+```kotlin
+WebContainer.launch(Url: String, object:WebContainerListener {
+    override fun callback(json: String) {
+        // ToDo
+    }
+}, enableSwipeRefresh: Boolean)
 ```
 
 HTML/JS:
@@ -75,5 +96,4 @@ class ClassA extends React.PureComponent {
             window.AndroidAppCallback.callback("Test");
     };
 }
-
 ```
