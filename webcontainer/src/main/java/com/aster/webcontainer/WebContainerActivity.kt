@@ -140,6 +140,7 @@ internal class WebContainerActivity : AppCompatActivity() {
                 isLoaded = true
                 toolbar.title = webContainer.title
                 setSwipeRefreshState(isComplete = true)
+                isOpenedFirstTime = false
             })
             progressBar.isVisible = !isLoaded
         }
