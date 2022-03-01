@@ -30,7 +30,7 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-  implementation 'com.github.ichsanachmad:WebContainer:v1.2.0'
+  implementation 'com.github.ichsanachmad:WebContainer:${version}'
 }
 ```
 
