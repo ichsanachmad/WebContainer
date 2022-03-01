@@ -94,7 +94,11 @@ WebContainer.launch(Url: String, object:WebContainerListener {
 }, enableSwipeRefresh: Boolean)
 ```
 
-HTML/JS:
+---
+
+**Trigger Callback from Web**
+
+_HTML/JS_:
 ```html
 <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 
@@ -105,7 +109,7 @@ HTML/JS:
 </script>
 ```
 
-React JS :
+_React JS_ :
 ```javascript
 class ClassA extends React.PureComponent {
 
