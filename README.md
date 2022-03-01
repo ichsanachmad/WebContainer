@@ -36,7 +36,22 @@ dependencies {
 ## How to Use
 Init WebContainer on Application 
 
+_Application.kt_ (Kotlin):
+```kotlin
+WebContainer.init(application: Application)
+```
 
+AndroidManifest.xml (Kotlin):
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    ...>
+
+    <application
+        android:name=".Application"
+        ...
+    </application>
+</manifest>
+```
 
 **Simple Usage WebContainer**
 
@@ -52,7 +67,9 @@ Kotlin:
 WebContainer.launch(url: String, enableSwipeRefresh: Boolean)
 ```
 
-WebContainer with Callback Listener
+---
+
+**WebContainer with Callback Listener**
 
 _without Swipe Refresh_
 Kotlin:
