@@ -35,7 +35,7 @@ dependencies {
 ```
 
 ## How to Use
-### Initialization WebContainer on Application**
+### Initialization WebContainer on Application
 
 _Application.kt_ (Kotlin):
 ```kotlin
