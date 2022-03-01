@@ -1,6 +1,7 @@
 <h1 align="center" style="border-bottom: none;">
     WebContainer 
     <p align="center">
+      <a href="https://github.com/ichsanachmad/WebContainer/actions/workflows/android.yml"><img src="https://github.com/ichsanachmad/WebContainer/actions/workflows/android.yml/badge.svg?branch=master" alt="build"></a>
       <a href="https://twitter.com/intent/tweet?text=Web Container for your Android WebView&url=https://github.com/ichsanachmad/WebContainer/"><img src="https://img.shields.io/badge/Tweet--white?style=social&logo=twitter" alt="build"></a>
       <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
       <a href="https://github.com/ichsanachmad/"><img src="https://img.shields.io/badge/GitHub--white?style=social&logo=github" alt="codecov"></a>
