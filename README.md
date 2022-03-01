@@ -34,14 +34,14 @@ dependencies {
 ```
 
 ## How to Use
-Init WebContainer on Application 
+**Initialization WebContainer on Application**
 
 _Application.kt_ (Kotlin):
 ```kotlin
 WebContainer.init(application: Application)
 ```
 
-AndroidManifest.xml (Kotlin):
+_AndroidManifest.xml_:
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     ...>
