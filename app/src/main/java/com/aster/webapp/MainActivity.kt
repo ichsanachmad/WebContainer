@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), WebContainerListener {
         setContentView(binding.root)
 
         binding.openContainer.setOnClickListener {
-            WebContainer.launch(this, "https://google.com/", this)
+            WebContainer.launch("https://github.com/", true)
         }
     }
 
