@@ -3,6 +3,7 @@
     <p align="center">
       <a href="https://twitter.com/intent/tweet?text=Web Container for your Android WebView&url=https://github.com/ichsanachmad/WebContainer/"><img src="https://img.shields.io/badge/Tweet--white?style=social&logo=twitter" alt="build"></a>
       <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer.svg?type=shield"/></a>
       <a href="https://github.com/ichsanachmad/"><img src="https://img.shields.io/badge/GitHub--white?style=social&logo=github" alt="codecov"></a>
     </p>
 </h1>
@@ -77,3 +78,7 @@ class ClassA extends React.PureComponent {
 }
 
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer?ref=badge_large)
