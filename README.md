@@ -1,6 +1,7 @@
 <h1 align="center" style="border-bottom: none;">
     WebContainer 
     <p align="center">
+      <a href="https://github.com/ichsanachmad/WebContainer/actions/workflows/android.yml"><img src="https://github.com/ichsanachmad/WebContainer/actions/workflows/android.yml/badge.svg?branch=master" alt="build"></a>
       <a href="https://twitter.com/intent/tweet?text=Web Container for your Android WebView&url=https://github.com/ichsanachmad/WebContainer/"><img src="https://img.shields.io/badge/Tweet--white?style=social&logo=twitter" alt="build"></a>
       <a href="https://jitpack.io/#ichsanachmad/WebContainer"><img src="https://jitpack.io/v/ichsanachmad/WebContainer.svg" alt="build"></a>
       <a href="https://github.com/ichsanachmad/"><img src="https://img.shields.io/badge/GitHub--white?style=social&logo=github" alt="codecov"></a>
@@ -29,31 +30,79 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-  implementation 'com.github.ichsanachmad:WebContainer:v1.2.0'
+  implementation 'com.github.ichsanachmad:WebContainer:${version}'
 }
 ```
 
 ## How to Use
+### Initialization WebContainer on Application
 
-Simple Usage WebContainer
-
-Kotlin:
+_Application.kt_ (Kotlin):
 ```kotlin
-WebContainer.launch(context: Activity, Url: String)
+WebContainer.init(application: Application)
 ```
 
-WebContainer with Callback Listener
+_AndroidManifest.xml_:
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    ...>
+
+    <application
+        android:name=".Application"
+        ...
+    </application>
+</manifest>
+```
+
+---
+
+### Simple Usage WebContainer
+
+_without Swipe Refresh_
 
 Kotlin:
 ```kotlin
-WebContainer.launch(context: Activity, Url: String, object:WebContainerListener {
+WebContainer.launch(url: String)
+```
+
+_with Swipe Refresh_
+
+Kotlin:
+```kotlin
+WebContainer.launch(url: String, enableSwipeRefresh: Boolean)
+```
+
+---
+
+### WebContainer with Callback Listener
+
+_without Swipe Refresh_
+
+Kotlin:
+```kotlin
+WebContainer.launch(Url: String, object:WebContainerListener {
     override fun callback(json: String) {
         // ToDo
     }
 })
 ```
 
-HTML/JS:
+_with Swipe Refresh_
+
+Kotlin:
+```kotlin
+WebContainer.launch(Url: String, object:WebContainerListener {
+    override fun callback(json: String) {
+        // ToDo
+    }
+}, enableSwipeRefresh: Boolean)
+```
+
+---
+
+### Trigger Callback from Web
+
+_HTML/JS_:
 ```html
 <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 
@@ -64,7 +113,7 @@ HTML/JS:
 </script>
 ```
 
-React JS :
+_React JS_ :
 ```javascript
 class ClassA extends React.PureComponent {
 
@@ -75,5 +124,15 @@ class ClassA extends React.PureComponent {
             window.AndroidAppCallback.callback("Test");
     };
 }
+```
 
+---
+
+### Extension
+
+_Check is URL_
+
+Kotlin:
+```kotlin
+    String.isUrl() // For Checking your String is Valid URL or Not
 ```
