@@ -125,3 +125,14 @@ class ClassA extends React.PureComponent {
     };
 }
 ```
+
+---
+
+### Extension
+
+_Check is URL_
+
+Kotlin:
+```kotlin
+    String.isUrl() // For Checking your String is Valid URL or Not
+```
