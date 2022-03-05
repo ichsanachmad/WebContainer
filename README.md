@@ -15,14 +15,28 @@ Web Container is a simple web container library for Android to help fellow devel
 
 ## How To Install
 
-Step 1. Add the JitPack repository to your build file
-  
+Step 1. Add the JitPack repository
+
+
+Gradle 6.x.x (on build project file):  
 ```gradle
 allprojects {
   repositories {
     ...
     maven { url 'https://jitpack.io' }
   }
+}
+```
+
+
+Gradle 7.x.x (on settings.gradle file): 
+```gradle
+dependencyResolutionManagement {
+    ...
+    repositories {
+       ...
+       maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
@@ -39,7 +53,12 @@ dependencies {
 
 _Application.kt_ (Kotlin):
 ```kotlin
-WebContainer.init(application: Application)
+class App : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        WebContainer.init(this)
+    }
+}
 ```
 
 _AndroidManifest.xml_:
@@ -48,7 +67,7 @@ _AndroidManifest.xml_:
     ...>
 
     <application
-        android:name=".Application"
+        android:name=".App"
         ...
     </application>
 </manifest>
