@@ -179,12 +179,9 @@ internal class WebContainerActivity : AppCompatActivity() {
 
         @JvmStatic
         fun initialize(application: Application) {
-            applicationContext = application.applicationContext
-        }
-
-        @JvmStatic
-        fun openWebContainer(url: String) {
-            startActivity(url, enableSwipeRefresh = false)
+            applicationContext ?: run {
+                applicationContext = application.applicationContext
+            }
         }
 
         @JvmStatic
