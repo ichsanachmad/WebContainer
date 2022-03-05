@@ -215,6 +215,9 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
 
         private fun startActivity(url: String, enableSwipeRefresh: Boolean) {
+            require(applicationContext != null) {
+                "WebContainer not initialized yet, please init in Application with WebContainer.init(application: Application)"
+            }
             applicationContext?.let {
                 Intent(it, WebContainerActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -223,7 +226,6 @@ internal class WebContainerActivity : AppCompatActivity() {
                     it.startActivity(this)
                 }
             }
-                ?: throw IllegalStateException("WebContainer not initialized yet, please init in Application with WebContainer.init(application: Application)")
         }
     }
 }
