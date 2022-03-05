@@ -190,25 +190,17 @@ internal class WebContainerActivity : AppCompatActivity() {
         @JvmStatic
         fun openWebContainer(
             url: String,
-            enableSwipeRefresh: Boolean
+            enableSwipeRefresh: Boolean = false
         ) {
             startActivity(url, enableSwipeRefresh)
         }
 
         @JvmStatic
-        fun openWebContainerWithListener(
-            url: String,
-            listener: WebContainerListener
-        ) {
-            startActivity(url, enableSwipeRefresh = false)
-            this.listener = listener
-        }
-
-        @JvmStatic
+        @JvmOverloads
         fun openWebContainerWithListener(
             url: String,
             listener: WebContainerListener,
-            enableSwipeRefresh: Boolean
+            enableSwipeRefresh: Boolean = false
         ) {
             startActivity(url, enableSwipeRefresh)
             this.listener = listener
