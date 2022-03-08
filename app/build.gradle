@@ -48,4 +48,5 @@ dependencies {
 
     implementation 'com.android.support:multidex:2.0.1'
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.20"
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }
