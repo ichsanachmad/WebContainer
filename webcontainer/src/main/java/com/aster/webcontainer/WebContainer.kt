@@ -3,6 +3,7 @@ package com.aster.webcontainer
 import android.app.Application
 import android.content.Context
 import com.aster.webcontainer.listener.WebContainerListener
+import com.aster.webcontainer.util.useragent.UserAgent
 
 /**
  * @author ichsanachmad
@@ -12,6 +13,11 @@ object WebContainer {
     @JvmStatic
     fun init(application: Application) {
         WebContainerActivity.initialize(application)
+    }
+
+    @JvmStatic
+    fun init(application: Application, userAgent: UserAgent) {
+        WebContainerActivity.initialize(application, userAgent)
     }
 
     @JvmStatic

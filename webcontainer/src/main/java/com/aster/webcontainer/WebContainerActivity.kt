@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aster.webcontainer.databinding.ActivityWebContainerBinding
 import com.aster.webcontainer.listener.WebContainerBridge
 import com.aster.webcontainer.listener.WebContainerListener
+import com.aster.webcontainer.util.useragent.UserAgent
 
 /**
  * @author ichsanachmad
@@ -115,7 +116,7 @@ internal class WebContainerActivity : AppCompatActivity() {
                 loadWithOverviewMode = true
                 javaScriptEnabled = true
                 domStorageEnabled = true
-                userAgentString = System.getProperty(USER_AGENT_PROPERTY_KEY)
+                userAgentString = getUserAgent()
             }
             loadUrl(this@WebContainerActivity.url)
         }
@@ -165,9 +166,12 @@ internal class WebContainerActivity : AppCompatActivity() {
         }
     }
 
+    private fun getUserAgent() : String? {
+        return userAgent?.type
+    }
+
     companion object {
         private const val TAG = "WebContainer"
-        private const val USER_AGENT_PROPERTY_KEY = "http.agent"
         private const val EXTRA_WC_URL = "web_container_url"
         private const val EXTRA_IS_ENABLE_SWIPE_REFRESH = "web_container_is_enable_swipe_refresh"
         private const val CALLBACK_KEY = "AndroidAppCallback"
@@ -177,10 +181,15 @@ internal class WebContainerActivity : AppCompatActivity() {
 
         private var applicationContext: Context? = null
 
+        private var userAgent: UserAgent? = null
+
         @JvmStatic
-        fun initialize(application: Application) {
+        fun initialize(application: Application, userAgent: UserAgent = UserAgent.DEFAULT_DEVICE) {
             applicationContext ?: run {
                 applicationContext = application.applicationContext
+            }
+            this.userAgent ?: run {
+                this.userAgent = userAgent
             }
         }
 

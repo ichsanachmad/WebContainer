@@ -2,6 +2,7 @@ package com.aster.webapp
 
 import android.app.Application
 import com.aster.webcontainer.WebContainer
+import com.aster.webcontainer.util.useragent.UserAgent
 
 /**
  * @author ichsanachmad
@@ -9,6 +10,6 @@ import com.aster.webcontainer.WebContainer
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        WebContainer.init(this)
+        WebContainer.init(this, UserAgent.CHROME)
     }
 }
