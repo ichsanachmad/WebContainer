@@ -184,6 +184,7 @@ internal class WebContainerActivity : AppCompatActivity() {
         private var userAgent: UserAgent? = null
 
         @JvmStatic
+        @JvmOverloads
         fun initialize(application: Application, userAgent: UserAgent = UserAgent.DEFAULT_DEVICE) {
             applicationContext ?: run {
                 applicationContext = application.applicationContext
