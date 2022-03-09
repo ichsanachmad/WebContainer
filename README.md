@@ -16,14 +16,28 @@ Web Container is a simple web container library for Android to help fellow devel
 
 ## How To Install
 
-Step 1. Add the JitPack repository to your build file
-  
+Step 1. Add the JitPack repository
+
+
+Gradle 6.x.x (on build project file):  
 ```gradle
 allprojects {
   repositories {
     ...
     maven { url 'https://jitpack.io' }
   }
+}
+```
+
+
+Gradle 7.x.x (on settings.gradle file): 
+```gradle
+dependencyResolutionManagement {
+    ...
+    repositories {
+       ...
+       maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
@@ -38,9 +52,27 @@ dependencies {
 ## How to Use
 ### Initialization WebContainer on Application
 
+This is the default initialization of WebContainer 
+
 _Application.kt_ (Kotlin):
 ```kotlin
-WebContainer.init(application: Application)
+class App : Application() {
+    override fun onCreate() {
+        ...
+        WebContainer.init(this)
+    }
+}
+```
+
+but that initialization is default init, we can do some change on the User Agent, this is the example:
+
+```kotlin
+class App : Application() {
+    override fun onCreate() {
+        ...
+        WebContainer.init(this, UserAgent.CHROME)
+    }
+}
 ```
 
 _AndroidManifest.xml_:
@@ -49,7 +81,7 @@ _AndroidManifest.xml_:
     ...>
 
     <application
-        android:name=".Application"
+        android:name=".App"
         ...
     </application>
 </manifest>
@@ -92,11 +124,11 @@ _with Swipe Refresh_
 
 Kotlin:
 ```kotlin
-WebContainer.launch(Url: String, object:WebContainerListener {
+WebContainer.launch(Url: String, enableSwipeRefresh: Boolean, object:WebContainerListener {
     override fun callback(json: String) {
         // ToDo
     }
-}, enableSwipeRefresh: Boolean)
+})
 ```
 
 ---
@@ -131,13 +163,27 @@ class ClassA extends React.PureComponent {
 
 ### Extension
 
-_Check is URL_
+#### Check is URL
 
 Kotlin:
 ```kotlin
     String.isUrl() // For Checking your String is Valid URL or Not
 ```
 
+### Utilities
+
+#### User Agent
+
+```kotlin
+    UserAgent.CHROME //if you want to define your web view using Chrome User agent 
+    UserAgent.FIREFOX //if you want to define your web view using Firefox User agent 
+    UserAgent.OPERA //if you want to define your web view using Opera User Agent
+    UserAgent.SAFARI //if you want to define your web view using Safari User Agent
+    UserAgent.DEFAULT // Device user agent
+```
+
+---
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer?ref=badge_large)
+
