@@ -3,6 +3,6 @@ package com.aster.webcontainer.listener
 /**
  * @author ichsanachmad
  */
-interface WebContainerListener {
+fun interface WebContainerListener {
     fun callback(json: String)
 }
