@@ -59,7 +59,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
     }
 
-    implementation 'com.android.support:multidex:2.0.1'
+    implementation "androidx.multidex:multidex:2.0.1"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.20"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
