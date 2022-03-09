@@ -185,5 +185,6 @@ Kotlin:
 ---
 
 ## License
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e20b67c0fde0416c90da8f9b7e28946a)](https://app.codacy.com/gh/ichsanachmad/WebContainer?utm_source=github.com&utm_medium=referral&utm_content=ichsanachmad/WebContainer&utm_campaign=Badge_Grade_Settings)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fichsanachmad%2FWebContainer?ref=badge_large)
 
